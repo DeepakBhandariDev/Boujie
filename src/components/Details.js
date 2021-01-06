@@ -1,14 +1,27 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useRef} from 'react';
 import {useParams} from 'react-router-dom';
 import { DataContext } from './DataProvider';
+import Colors from './Colors';
+import Sizes from './Sizes';
+import DetailsThumb from './DetailsThumb';
 
 export default function Details() {
     const {id} = useParams();
     const [products, setProducts] = useContext(DataContext);
+    const [index, setIndex] = useState(0);
+    const imgDiv = useRef();
 
     const details = products.filter((product, index) =>{
         return product._id === id;
     })
+
+    const handleMouseMove = e => {
+        const{left, top, width, height} = e.target.getBoundingClientRect();
+        const x = (e.pageX - left)/ width * 100
+        const y = (e.pageY - top)/ height * 100
+        imgDiv.current.style.backgroundPosition = `${x}% ${y}%`
+    }
+
 
 
     return (
@@ -16,37 +29,19 @@ export default function Details() {
           {
           details.map(product =>(
               <div className="details" key={product._id}>
-              <div className="img-container" 
-              style={{backgroundImage: `url(${product.images[0]})`}} />
+              <div className="img-container" onMouseMove={handleMouseMove} 
+              style={{backgroundImage: `url(${product.images[index]})`}} ref={imgDiv} 
+              onMouseLeave={()=>{imgDiv.current.style.backgroundPosition =`center`}}/>
 
                 <div className="box-details">
                     <h2 title = {product.title}>{product.title}</h2>
                     <h3>${product.price}</h3>
+                    <Colors colors={product.colors}/>
+                    <Sizes sizes={product.sizes} />
                     
-                    <div className="colors">
-                        {
-                            product.colors.map((color,index) =>(
-                                <button key="index" style={{background: color}}></button>
-                            ))
-                        }
-                    </div>
-
-                    <div className="sizes">
-                        {
-                            product.sizes.map((size,index) =>(
-                                <button key="index">{size}</button>
-                            ))
-                        }
-                    </div>
                     <p>{product.description}</p>
                     <p>{product.content}</p>
-                    <div className="thumb">
-                        {
-                            product.images.map((img, index) =>(
-                                <img src={img} alt="" key={index}/>
-                            ))
-                        }
-                    </div>
+                    <DetailsThumb images={product.images} setIndex={setIndex}/>
                     <button className="cart">Add to Cart</button>
                 </div>
               
