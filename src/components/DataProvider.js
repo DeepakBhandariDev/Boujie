@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react'
+import React, {createContext, useState, useEffect} from 'react'
 import t1 from "./svg/tshirt/t1.jpg"
 import t2 from "./svg/tshirt/t2.jpg"
 import t3 from "./svg/tshirt/t3.jpg"
@@ -9,7 +9,7 @@ import t6 from "./svg/tshirt/t6.jpg"
 
 export const DataContext = createContext();
 
-export const DataProvider= (props) => {
+export const DataProvider = (props) => {
     const [products, setProducts] = useState([
         {
             "_id": "1",
@@ -23,7 +23,8 @@ export const DataProvider= (props) => {
             "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
             "colors": ["red", "black", "teal"],
             "sizes": ["XL", "L", "M", "XM", "LX"],
-            "price": 101
+            "price": 101,
+            "count": 1
         },
         {
             "_id": "2",
@@ -37,7 +38,8 @@ export const DataProvider= (props) => {
             "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
             "colors": ["red", "black", "teal"],
             "sizes": ["XL", "L", "M", "XM", "LX"],
-            "price": 102
+            "price": 150,
+            "count": 1
         },
         {
             "_id": "3",
@@ -51,7 +53,8 @@ export const DataProvider= (props) => {
             "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
             "colors": ["red", "black", "teal"],
             "sizes": ["XL", "L", "M", "XM", "LX"],
-            "price": 103
+            "price": 103,
+            "count": 1
         },
         {
             "_id": "4",
@@ -65,7 +68,8 @@ export const DataProvider= (props) => {
             "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
             "colors": ["red", "black", "teal"],
             "sizes": ["XL", "L", "M", "XM", "LX"],
-            "price": 104
+            "price": 104,
+            "count": 1
         },
         {
             "_id": "5",
@@ -79,7 +83,8 @@ export const DataProvider= (props) => {
             "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
             "colors": ["red", "black", "teal"],
             "sizes": ["XL", "L", "M", "XM", "LX"],
-            "price": 105
+            "price": 105,
+            "count": 1
         },
         {
             "_id": "6",
@@ -93,11 +98,45 @@ export const DataProvider= (props) => {
             "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
             "colors": ["red", "black", "teal"],
             "sizes": ["XL", "L", "M", "XM", "LX"],
-            "price": 106
+            "price": 106,
+            "count": 1
         }
     ]);
+
+    const [cart, setCart] = useState([])
+
+    const addCart = (id) =>{
+        const check = cart.every(item =>{
+            return item._id !== id
+        })
+        if(check){
+            const data = products.filter(product =>{
+                return product._id === id
+            })
+            setCart([...cart, ...data])
+        }else{
+            alert("The product has been added to cart.")
+        }
+    }
+
+    useEffect(() =>{
+       const dataCart =  JSON.parse(localStorage.getItem('dataCart'))
+       if(dataCart) setCart(dataCart)
+    },[])
+
+    useEffect(() =>{
+        localStorage.setItem('dataCart', JSON.stringify(cart))
+    },[cart])
+
+
+    const value = {
+        products: [products, setProducts],
+        cart: [cart, setCart],
+        addCart: addCart
+    }
+
     return (
-        <DataContext.Provider value={[products, setProducts]}>
+        <DataContext.Provider value={value}>
             {props.children}
         </DataContext.Provider>
     )
