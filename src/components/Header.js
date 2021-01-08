@@ -33,7 +33,7 @@ export default function Header() {
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/">About</Link></li>
             <li><Link to="/">Contact</Link></li>
-            <li><Link to="/">Login / Register</Link></li>
+            <li><Link to="/login">Login / Register</Link></li>
             <li onClick={toggleMenu}>
                 <img src={Close} alt="" width="30" className="menu" />
             </li>

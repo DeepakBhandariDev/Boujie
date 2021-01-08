@@ -284,3 +284,28 @@ ul li{
   margin-right: 50px;
   color: crimson;
 }
+
+**************
+
+
+.userLogin{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.userLogin button{
+  width: 25%;
+  border: none;
+  outline: none;
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin: 10px 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
