@@ -22,11 +22,11 @@ export default function Header() {
     return (
         <header>
         <div className="menu" onClick={toggleMenu}>
-            <img src={Menu} alt="" width="30" />
+            <img src={Menu} alt="" width="20" />
         </div>
 
         <div className="logo">
-            <h1><Link to="/products">Boujie Apparels</Link></h1>
+            <h2><Link to="/products">Boujie Apparels</Link></h2>
         </div>
         <ul style={styleMenu}>
             <li><Link to="/">Home</Link></li>

@@ -285,19 +285,21 @@ ul li{
   color: crimson;
 }
 
-**************
+/**************/
 
 
 .userLogin{
   width: 100%;
+  min-height: 550px;
+  padding: 50px;
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
-  margin: 15px 0;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .userLogin button{
-  width: 25%;
+  width: 30%;
   border: none;
   outline: none;
   background: #333;
@@ -307,5 +309,6 @@ ul li{
   margin: 10px 0;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+
 }
