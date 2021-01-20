@@ -3,7 +3,9 @@ import Menu from "./svg/bars-solid.svg";
 import Close from "./svg/times-solid.svg";
 import {Link} from 'react-router-dom';
 import Cart from "./svg/cart.svg";
-import {DataContext} from './DataProvider'
+import {DataContext} from './DataProvider';
+//import AuthenticationButton from './buttons/AuthenticationButton';
+import AuthNav from './AuthNav';
 
 
 export default function Header() {
@@ -33,7 +35,8 @@ export default function Header() {
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/">About</Link></li>
             <li><Link to="/">Contact</Link></li>
-            <li><Link to="/login">Login / Register</Link></li>
+            <li><Link to="/profile">My Profile</Link></li>
+            <li><AuthNav /></li>
             <li onClick={toggleMenu}>
                 <img src={Close} alt="" width="30" className="menu" />
             </li>

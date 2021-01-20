@@ -9,8 +9,7 @@ const apparelSchema = new Schema({
     colors: {type: String, required: true},
     sizes: {type: String, required: true},
     price: {type: Number, required: true},
-    count: {type: Number, required: true},
-    date: {type: Date, required: true}
+    count: {type: Number, required: true}
 
     
 },{

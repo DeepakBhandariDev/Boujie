@@ -1,27 +1,22 @@
 import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from './Profile';
+import LogoutButton from './buttons/LogoutButton';
+import LoginButton from './buttons/LoginButton';
  
 
 export default function Login() {
-    const { loginWithRedirect, isAuthenticated, isLoading, logout } = useAuth0();
+    const { isAuthenticated, isLoading } = useAuth0();
     if (isLoading) {
         return <div>Loading ...</div>;
       }
     
-    
+//localStorage.setItem("user",user);
     return (
         <>
         <div className="userLogin ">
             
-            {!isAuthenticated && (
-            <button onClick={() => loginWithRedirect()}>Log In</button>
-            )}
-            {isAuthenticated && (
-            <button onClick={() => logout({ returnTo: window.location.origin })}>
-                Log Out
-            </button>
-            )}
+            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             <Profile className="card"/>
         
         </div>

@@ -19,7 +19,7 @@ router.route('/add').post((req,res) => {
     const newApparel = new Apparel({username, id, description, colors, sizes, price, count});
 
     newApparel.save()
-    .then(() => res.json('Exercise added.'))
+    .then(() => res.json('Apparel added.'))
     .catch(err => res.status(400).json('Error: '+ err));
 })
 

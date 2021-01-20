@@ -18,10 +18,10 @@ connection.once('open', ()=> {
     console.log("MongoDB connection succesful.")
 })
 
-const exercisesRouter = require('./routes/exercises');
+const apparelsRouter = require('./routes/apparels');
 const usersRouter = require('./routes/users');
 
-app.use('/exercises' , exercisesRouter);
+app.use('/apparels' , apparelsRouter);
 app.use('/users', usersRouter);
 
 
