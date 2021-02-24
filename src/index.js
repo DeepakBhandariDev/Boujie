@@ -3,18 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Auth0ProviderWithHistory from '../src/auth/auth0-provider-with-history';
-import { BrowserRouter as Router } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import { DataProvider } from './components/DataProvider';
+//import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
+//import { Auth0Provider } from '@auth0/auth0-react';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import {BrowserRouter as Router} from 'react-router-dom';
+//import { DataProvider } from './components/DataProvider';
+
+
+//Redux-ing
+import { createStore } from 'redux'
+import rootReducer from './redux/reducer'
+import { Provider } from 'react-redux'
+
+const store = createStore(rootReducer)
 
 ReactDOM.render(
-  <Router>
-  <Auth0ProviderWithHistory>
   <React.StrictMode>
+    <Provider store={store}>
+    
     <App />
+    
+    </Provider>
   </React.StrictMode>
-  </Auth0ProviderWithHistory>
-  </Router>
+  
+  
     ,
   document.getElementById('root')
 );

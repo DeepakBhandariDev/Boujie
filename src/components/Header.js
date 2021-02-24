@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom';
 import Cart from "./svg/cart.svg";
 import {DataContext} from './DataProvider';
 //import AuthenticationButton from './buttons/AuthenticationButton';
-import AuthNav from './AuthNav';
-
+//import AuthNav from './AuthNav';
+//import Login from './Login';
 
 export default function Header() {
     const [menu, setMenu] = useState(false)
@@ -28,15 +28,15 @@ export default function Header() {
         </div>
 
         <div className="logo">
-            <h2><Link to="/products">Boujie Apparels</Link></h2>
+            <h2><Link to="/">Boujie Apparels</Link></h2>
         </div>
         <ul style={styleMenu}>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/products">Products</Link></li>
             <li><Link to="/">About</Link></li>
             <li><Link to="/">Contact</Link></li>
-            <li><Link to="/profile">My Profile</Link></li>
-            <li><AuthNav /></li>
+            <li><Link to="/profile">Profile</Link></li>
+            
             <li onClick={toggleMenu}>
                 <img src={Close} alt="" width="30" className="menu" />
             </li>

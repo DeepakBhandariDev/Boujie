@@ -6,6 +6,7 @@ export default function Profile() {
     const { user, isAuthenticated } = useAuth0();
 
     return (
+        
         isAuthenticated && (
         <div className="details">
          <img src={user.picture} alt={user.name}/>   

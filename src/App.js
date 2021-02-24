@@ -1,42 +1,44 @@
 import React from 'react';
 import Header from './components/Header';
 import Products from './components/Products';
-import { Routes, Route} from 'react-router-dom';
-import { DataProvider } from './components/DataProvider';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+//import { DataProvider } from './components/DataProvider';
 import Details from './components/Details';
 import Cart from './components/Cart';
-//import Login from './components/Login';
+import { DataProvider } from './components/DataProvider';
+import Login from './components/Login';
 //import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 import Profile from './components/Profile';
-import { useAuth0 } from "@auth0/auth0-react";
+//import { Auth0Provider } from "@auth0/auth0-react";
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 
 
 function App() {
-  const { isLoading } = useAuth0();
-  if (isLoading) {
-    return <div>Loading ...</div>;
   
-  }
 
   return (
-    <div className="App">
-      <DataProvider>
-     
+    
+<DataProvider>
+      <div className="App">
+        <Router>
+          <Auth0ProviderWithHistory>
           <Header />
           
+
           <section>
             <Routes>
-              <Route path="products" element={<Products />} />
-              <Route path="products/:id" element={<Details />} />
-              <Route path="cart" element={<Cart/>} />
-              <Route path="profile" element={<Profile/>} />
-              
+              <Route path="products" element={ <Products /> } />
+              <Route path="products/:id" element={ <Details /> } />
+              <Route path="cart" element={ <Cart /> } />
+              <Route path="profile" element={ <Profile /> } />
+              <Route path="login" element={ <Login /> } />
             </Routes>
           </section>
-      
-        </DataProvider>
-     
+          </Auth0ProviderWithHistory>
+        </Router>
       </div>
+    </DataProvider>
+     
   );
 }
 
